@@ -1,8 +1,7 @@
 package com.rishi.electronic.store.services;
 
-import com.rishi.electronic.store.dtos.AddItemToCartRequest;
+
 import com.rishi.electronic.store.dtos.CartDto;
-import com.rishi.electronic.store.exceptions.BadApiRequest;
 
 public interface CartService {
     //add items to cart:
@@ -10,6 +9,8 @@ public interface CartService {
     //case2 : cart available add the items to cart
 
     CartDto addItemToCart(String userId, AddItemToCartRequest request);
+
+    CartDto addItemToCart(String userId, AddItemToCart request);
 
     //remove item from cart:
     void removeItemFromCart(String userId, int cartItem);

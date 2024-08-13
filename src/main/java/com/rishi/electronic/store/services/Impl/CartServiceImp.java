@@ -1,6 +1,4 @@
 package com.rishi.electronic.store.services.Impl;
-
-import com.rishi.electronic.store.dtos.AddItemToCartRequest;
 import com.rishi.electronic.store.dtos.CartDto;
 import com.rishi.electronic.store.entites.Cart;
 import com.rishi.electronic.store.entites.CartItem;
@@ -43,7 +41,7 @@ public class CartServiceImp implements CartService {
     @Autowired
     private ModelMapper mapper;
     @Override
-    public CartDto addItemToCart(String userId, AddItemToCartRequest request) {
+    public CartDto addItemToCart(String userId, AddItemToCart request) {  //AddItemToCartRequest
         int quantity = request.getQuantity();
         String productId = request.getProductId();
 
