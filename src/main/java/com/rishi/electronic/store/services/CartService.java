@@ -1,7 +1,7 @@
 package com.rishi.electronic.store.services;
 
 
-import com.rishi.electronic.store.dtos.CartDto;
+import com.rishi.electronic.store.dtos.*;
 
 public interface CartService {
     //add items to cart:
@@ -10,7 +10,8 @@ public interface CartService {
 
     CartDto addItemToCart(String userId, AddItemToCartRequest request);
 
-    CartDto addItemToCart(String userId, AddItemToCart request);
+
+//    CartDto addItemToCart(String userId);
 
     //remove item from cart:
     void removeItemFromCart(String userId, int cartItem);

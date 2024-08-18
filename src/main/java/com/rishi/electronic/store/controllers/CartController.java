@@ -3,16 +3,12 @@ package com.rishi.electronic.store.controllers;
 import com.rishi.electronic.store.dtos.AddItemToCartRequest;
 import com.rishi.electronic.store.dtos.ApiResponseMessage;
 import com.rishi.electronic.store.dtos.CartDto;
-import com.rishi.electronic.store.dtos.CategoryDto;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.CartService;
-import jdk.jfr.consumer.RecordedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.lang.model.element.ModuleElement;
 
 @RestController
 @RequestMapping("/carts")

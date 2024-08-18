@@ -1,4 +1,5 @@
 package com.rishi.electronic.store.services.Impl;
+import com.rishi.electronic.store.dtos.AddItemToCartRequest;
 import com.rishi.electronic.store.dtos.CartDto;
 import com.rishi.electronic.store.entites.Cart;
 import com.rishi.electronic.store.entites.CartItem;
@@ -41,17 +42,17 @@ public class CartServiceImp implements CartService {
     @Autowired
     private ModelMapper mapper;
     @Override
-    public CartDto addItemToCart(String userId, AddItemToCart request) {  //AddItemToCartRequest
-        int quantity = request.getQuantity();
+    public CartDto addItemToCart(String userId, AddItemToCartRequest request) {  //AddItemToCartRequest
+        int quantity = request.getQuanity();
         String productId = request.getProductId();
 
-        if(quantity<=0){
-            try {
-                throw new BadApiRequest("Requested quantity is not valid");
-            } catch (BadApiRequest e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        if(quantity<=0){
+//            try {
+//                throw new BadApiRequest("Requested quantity is not valid");
+//            } catch (BadApiRequest e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         //fetch the product
         Product product = productRepository.findById(productId).orElseThrow(() -> new ResourceNotFoundException("Product not found in database !!"));
         //fetch the user from db
@@ -68,7 +69,8 @@ public class CartServiceImp implements CartService {
         //if cart items already present : than update
         AtomicReference<Boolean> updated = new AtomicReference<>(false);
         List<CartItem> items = cart.getItems();
-        List<CartItem> updatedItems = items.stream().map(item -> {
+        items = items.stream().map(item -> {    //List<CartItem> updatedItems = items.stream().map(item -> {
+//        List<CartItem> updatedItems = items.stream().map(item -> {
             if (item.getProduct().getProductId().equals(productId)) {
                 //item already present it cart
                 item.setQuantity(quantity);
@@ -77,7 +79,7 @@ public class CartServiceImp implements CartService {
             }
             return item;
         }).collect(Collectors.toList());
-        cart.setItems(updatedItems);
+//        cart.setItems(updatedItems);
 
         //create items
         if (!updated.get()) {
@@ -94,6 +96,8 @@ public class CartServiceImp implements CartService {
             return mapper.map(updatedCart, CartDto.class);
 
     }
+
+
     @Override
     public void removeItemFromCart(String userId, int cartItem) {
         //condition
