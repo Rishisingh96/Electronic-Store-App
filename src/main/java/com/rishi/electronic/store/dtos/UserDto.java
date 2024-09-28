@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,6 +37,7 @@ public class UserDto {
     @NotBlank(message = "Write something about yourself !!")
     private String about;
 
+    private List<RoleDto> roles;
     // @Pattern
     //Custom Validator
     @ImageNameValid

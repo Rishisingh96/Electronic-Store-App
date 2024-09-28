@@ -8,6 +8,7 @@ import com.rishi.electronic.store.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +18,7 @@ public class CartController {
     private CartService cartService;
 
     //add items to cart
+    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
     @PostMapping("/{userId}")
     public ResponseEntity<CartDto> addItemToCar(@PathVariable String userId, @RequestBody AddItemToCartRequest request) throws BadApiRequest {
         CartDto cartDto = cartService.addItemToCart(userId, request);
@@ -24,6 +26,7 @@ public class CartController {
     }
 
     //remove items
+
     @DeleteMapping("/{userId}/items/{itemId}")
     public ResponseEntity<ApiResponseMessage> removeItemFromCart(@PathVariable String userId, @PathVariable int itemId ){
         cartService.removeItemFromCart(userId,itemId);
@@ -36,6 +39,7 @@ public class CartController {
     }
 
     //create cart clear cart
+    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponseMessage> clearCart(@PathVariable String userId ){
         cartService.clearCart(userId);
@@ -48,6 +52,7 @@ public class CartController {
     }
 
     //add items to cart
+    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
     @GetMapping("/{userId}")
     public ResponseEntity<CartDto> getCart(@PathVariable String userId){
         CartDto cartDto = cartService.getCartByUser(userId);

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.w3c.dom.stylesheets.LinkStyle;
 
@@ -23,7 +24,10 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    //user
     //create
+//    @PreAuthorize("hasRole('NORMAL')")
+    @PreAuthorize("hasAnyRole('NORMAL','ADMIN')")
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody CreateOrderRequest request) throws BadApiRequest {
         OrderDto order = orderService.createOrder(request);
@@ -43,6 +47,8 @@ public class OrderController {
     }
 
     //get orders of the user
+    //normal user
+    @PreAuthorize("hasAnyRole('NORMAL','ADMIN')")
     @GetMapping("/users/{userId}")
     public  ResponseEntity<List<OrderDto>> getOrderOfUser(@PathVariable String userId ){
         List<OrderDto> ordersOfUser = orderService.getOrderOfUser(userId);
@@ -50,6 +56,7 @@ public class OrderController {
     }
 
     //getOrder all
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<PageableResponse<OrderDto>> getOrders(
     @RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
