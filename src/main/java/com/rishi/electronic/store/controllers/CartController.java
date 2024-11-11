@@ -1,5 +1,6 @@
 package com.rishi.electronic.store.controllers;
 
+import com.rishi.electronic.store.config.AppConstants;
 import com.rishi.electronic.store.dtos.AddItemToCartRequest;
 import com.rishi.electronic.store.dtos.ApiResponseMessage;
 import com.rishi.electronic.store.dtos.CartDto;
@@ -18,7 +19,7 @@ public class CartController {
     private CartService cartService;
 
     //add items to cart
-    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
+    @PreAuthorize("hasAnyRole('"+AppConstants.ROLE_ADMIN+"','"+ AppConstants.ROLE_NORMAL+"')")
     @PostMapping("/{userId}")
     public ResponseEntity<CartDto> addItemToCar(@PathVariable String userId, @RequestBody AddItemToCartRequest request) throws BadApiRequest {
         CartDto cartDto = cartService.addItemToCart(userId, request);
@@ -39,7 +40,7 @@ public class CartController {
     }
 
     //create cart clear cart
-    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
+    @PreAuthorize("hasAnyRole('"+AppConstants.ROLE_ADMIN+"','"+ AppConstants.ROLE_NORMAL+"')")
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponseMessage> clearCart(@PathVariable String userId ){
         cartService.clearCart(userId);
@@ -52,7 +53,7 @@ public class CartController {
     }
 
     //add items to cart
-    @PreAuthorize("hasAnyRole('ADMIN','NORMAL')")
+    @PreAuthorize("hasAnyRole('"+AppConstants.ROLE_ADMIN+"','"+ AppConstants.ROLE_NORMAL+"')")
     @GetMapping("/{userId}")
     public ResponseEntity<CartDto> getCart(@PathVariable String userId){
         CartDto cartDto = cartService.getCartByUser(userId);

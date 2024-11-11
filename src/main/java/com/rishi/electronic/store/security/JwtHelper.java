@@ -20,7 +20,7 @@ import java.util.function.Function;
 @Component
 public class JwtHelper {
 
-    // 1. Token validity (5 hours)
+  /*  // 1. Token validity (5 hours)
     public static final long TOKEN_VALIDITY = 5 * 60 * 60 * 1000;
 
     // 2. Secret key (now converted to SecretKey using Keys.hmacShaKeyFor)
@@ -39,12 +39,16 @@ public class JwtHelper {
     }
 
     // For retrieving any information from token, we will need the secret key
+//    private Claims getAllClaimsFromToken(String token) {
+//        return Jwts.parserBuilder()
+//                .verifyWith(SECRET_KEY)  // Use verifyWith to verify the signature
+//                .build()
+//                .parseClaimsJws(token)
+//                .getBody();  // Extract the claims (payload) from the token
+//    }
+    //for retrieving any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder()
-                .verifyWith(SECRET_KEY)  // Use verifyWith to verify the signature
-                .build()
-                .parseClaimsJws(token)
-                .getBody();  // Extract the claims (payload) from the token
+        return Jwts.parser().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getPayload();
     }
 
     // Check if the token has expired
@@ -73,10 +77,10 @@ public class JwtHelper {
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY))
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS512) // signWith now takes a SecretKey and SignatureAlgorithm
                 .compact();
-    }
+    }*/
 
 //this is old version of token
-    /*
+
     //requirement
 
     //1.validity
@@ -102,7 +106,7 @@ public class JwtHelper {
     }
 
     //check if the token has expired
-    private  Boolean isTokenExpired(String token){
+    public  Boolean isTokenExpired(String token){
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
@@ -125,5 +129,5 @@ public class JwtHelper {
                         .setIssuedAt(new Date(System.currentTimeMillis()))
                         .setExpiration(new Date(System.currentTimeMillis()+TOKEN_VALIDITY))
                         .signWith(SignatureAlgorithm.HS512, SECRET_KEY).compact();
-    } */
+    }
 }
