@@ -52,7 +52,6 @@ public class SecurityConfig {
             request.anyRequest().permitAll();
                 }
         );*/
-
         //Configuring urls
         //cors ko ham abhi ke lie disable ky hai
         //isko ham log baad mein sikhenge

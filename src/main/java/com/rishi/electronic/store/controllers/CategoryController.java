@@ -24,6 +24,7 @@ import java.io.InputStream;
 
 @RestController
 @RequestMapping("/categories")
+@CrossOrigin
 public class CategoryController {
 
     Logger logger = LoggerFactory.getLogger(CategoryController.class);
