@@ -17,7 +17,7 @@ import java.io.InputStream;
 
 @RestController
 @RequestMapping("/products")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class ProductController {
     @Autowired
     private ProductService productService;

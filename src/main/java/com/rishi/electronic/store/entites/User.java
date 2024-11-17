@@ -51,6 +51,9 @@ public class User implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 
+
+    private Providers provider;
+
     //Important for roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

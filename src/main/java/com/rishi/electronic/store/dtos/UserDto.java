@@ -1,5 +1,6 @@
 package com.rishi.electronic.store.dtos;
 
+import com.rishi.electronic.store.entites.Providers;
 import com.rishi.electronic.store.validate.ImageNameValid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -42,4 +43,6 @@ public class UserDto {
     //Custom Validator
     @ImageNameValid
     private String imageName;
+
+    private Providers providers;
 }

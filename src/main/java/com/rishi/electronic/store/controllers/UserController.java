@@ -5,6 +5,7 @@ import com.rishi.electronic.store.dtos.ApiResponseMessage;
 import com.rishi.electronic.store.dtos.ImageResponse;
 import com.rishi.electronic.store.dtos.PageableResponse;
 import com.rishi.electronic.store.dtos.UserDto;
+import com.rishi.electronic.store.entites.Providers;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.FileService;
 import com.rishi.electronic.store.services.UserServices;
@@ -45,6 +46,7 @@ public class UserController {
     //create
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+       userDto.setProviders(Providers.SELF);
         UserDto userDto1 = userServices.createUser(userDto);
         return new ResponseEntity<>(userDto1, HttpStatus.CREATED);
     }
