@@ -2,7 +2,7 @@ package com.rishi.electronic.store.config;
 
 import com.rishi.electronic.store.security.JWTAuthenticationFilter;
 import com.rishi.electronic.store.security.JwtAuthenticationEntryPoint;
-import jakarta.servlet.Filter;
+
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,10 +33,18 @@ import java.util.List;
 public class SecurityConfig {
 
     @Autowired
-    JWTAuthenticationFilter filter;
+    private JWTAuthenticationFilter filter;
 
     @Autowired
-    JwtAuthenticationEntryPoint entryPoint;
+    private JwtAuthenticationEntryPoint entryPoint;
+
+    private final String[] PUBLIC_URLS = {
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/swagger-resources/**",
+            "/v3/api-docs",
+            "/test"
+    };
 
     //SecurityFilterChain beans
     @Bean
@@ -78,6 +86,8 @@ public class SecurityConfig {
                     }
                 }));
         security.csrf(AbstractHttpConfigurer::disable);
+
+
         //csrf ko hame abhi ke lie disable
 //        security.cors(AbstractHttpConfigurer::disable);
         //configuring url
@@ -89,9 +99,11 @@ public class SecurityConfig {
                                 .requestMatchers("/products/**").hasRole(AppConstants.ROLE_ADMIN)
                                 .requestMatchers(HttpMethod.GET,"/users/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/users").permitAll()
+                                .requestMatchers(HttpMethod.GET, PUBLIC_URLS).permitAll()
                                 .requestMatchers(HttpMethod.GET,"/categories/**").permitAll()
                                 .requestMatchers("/categories/**").hasRole(AppConstants.ROLE_ADMIN)
-                                .requestMatchers(HttpMethod.POST,"/auth/generate-token","/auth/login-with-google").permitAll()
+//                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").hasRole(AppConstants.ROLE_ADMIN)
+                                .requestMatchers(HttpMethod.POST,"/auth/generate-token","/auth/login-with-google","/auth/regenerate-token").permitAll()
                                 .requestMatchers("/auth/**").authenticated()
                                 .anyRequest().permitAll()
         );

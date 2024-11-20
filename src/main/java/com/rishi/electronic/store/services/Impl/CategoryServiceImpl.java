@@ -1,8 +1,8 @@
 package com.rishi.electronic.store.services.Impl;
 
-import com.rishi.electronic.store.dtos.CategoryDto;
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.entites.Category;
+import com.rishi.electronic.store.dto.CategoryDto;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.entity.Category;
 import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.helper.Helper;
 import com.rishi.electronic.store.repositories.CategoryRepository;

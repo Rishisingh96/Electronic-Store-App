@@ -1,11 +1,10 @@
 package com.rishi.electronic.store.services.Impl;
-import com.rishi.electronic.store.dtos.AddItemToCartRequest;
-import com.rishi.electronic.store.dtos.CartDto;
-import com.rishi.electronic.store.entites.Cart;
-import com.rishi.electronic.store.entites.CartItem;
-import com.rishi.electronic.store.entites.Product;
-import com.rishi.electronic.store.entites.User;
-import com.rishi.electronic.store.exceptions.BadApiRequest;
+import com.rishi.electronic.store.dto.AddItemToCartRequest;
+import com.rishi.electronic.store.dto.CartDto;
+import com.rishi.electronic.store.entity.Cart;
+import com.rishi.electronic.store.entity.CartItem;
+import com.rishi.electronic.store.entity.Product;
+import com.rishi.electronic.store.entity.User;
 import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.repositories.CartItemRepository;
 import com.rishi.electronic.store.repositories.CartRepository;

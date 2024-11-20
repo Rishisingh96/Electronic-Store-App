@@ -1,8 +1,6 @@
 package com.rishi.electronic.store.helper;
 
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.UserDto;
-import com.rishi.electronic.store.entites.User;
+import com.rishi.electronic.store.dto.PageableResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 

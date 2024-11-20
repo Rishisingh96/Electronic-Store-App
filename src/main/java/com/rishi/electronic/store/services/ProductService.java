@@ -1,10 +1,7 @@
 package com.rishi.electronic.store.services;
 
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.ProductDto;
-import com.rishi.electronic.store.entites.Product;
-
-import java.util.List;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.dto.ProductDto;
 
 public interface ProductService {
     //create

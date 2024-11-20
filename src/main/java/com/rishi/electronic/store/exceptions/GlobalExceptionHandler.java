@@ -1,8 +1,7 @@
 package com.rishi.electronic.store.exceptions;
 
 
-import com.rishi.electronic.store.dtos.ApiResponseMessage;
-import org.apache.catalina.loader.ResourceEntry;
+import com.rishi.electronic.store.dto.ApiResponseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.lang.invoke.MethodHandle;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

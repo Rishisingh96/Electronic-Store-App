@@ -1,9 +1,9 @@
 package com.rishi.electronic.store.services.Impl;
 
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.ProductDto;
-import com.rishi.electronic.store.entites.Category;
-import com.rishi.electronic.store.entites.Product;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.dto.ProductDto;
+import com.rishi.electronic.store.entity.Category;
+import com.rishi.electronic.store.entity.Product;
 import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.helper.Helper;
 import com.rishi.electronic.store.repositories.CategoryRepository;
@@ -15,10 +15,7 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.function.Function;
 
 @Service
 public class ProductServiceImpl implements ProductService {

@@ -1,7 +1,7 @@
 package com.rishi.electronic.store.services;
 
 
-import com.rishi.electronic.store.dtos.*;
+import com.rishi.electronic.store.dto.*;
 
 public interface CartService {
     //add items to cart:

@@ -1,6 +1,6 @@
 package com.rishi.electronic.store.repositories;
 
-import com.rishi.electronic.store.entites.Role;
+import com.rishi.electronic.store.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

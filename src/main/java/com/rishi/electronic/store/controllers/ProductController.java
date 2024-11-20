@@ -1,5 +1,5 @@
 package com.rishi.electronic.store.controllers;
-import com.rishi.electronic.store.dtos.*;
+import com.rishi.electronic.store.dto.*;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.FileService;
 import com.rishi.electronic.store.services.ProductService;

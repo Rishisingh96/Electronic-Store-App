@@ -1,11 +1,12 @@
 package com.rishi.electronic.store.controllers;
 
 import com.rishi.electronic.store.config.AppConstants;
-import com.rishi.electronic.store.dtos.AddItemToCartRequest;
-import com.rishi.electronic.store.dtos.ApiResponseMessage;
-import com.rishi.electronic.store.dtos.CartDto;
+import com.rishi.electronic.store.dto.AddItemToCartRequest;
+import com.rishi.electronic.store.dto.ApiResponseMessage;
+import com.rishi.electronic.store.dto.CartDto;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.CartService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/carts")
 @CrossOrigin
+@Tag(name = "Cart Controller", description = "This is cart api for cart operation")
 public class CartController {
     @Autowired
     private CartService cartService;

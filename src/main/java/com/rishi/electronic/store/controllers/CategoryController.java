@@ -1,6 +1,6 @@
 package com.rishi.electronic.store.controllers;
 
-import com.rishi.electronic.store.dtos.*;
+import com.rishi.electronic.store.dto.*;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.CategoryService;
 import com.rishi.electronic.store.services.FileService;
@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;

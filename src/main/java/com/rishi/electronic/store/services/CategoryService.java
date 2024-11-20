@@ -1,7 +1,7 @@
 package com.rishi.electronic.store.services;
 
-import com.rishi.electronic.store.dtos.CategoryDto;
-import com.rishi.electronic.store.dtos.PageableResponse;
+import com.rishi.electronic.store.dto.CategoryDto;
+import com.rishi.electronic.store.dto.PageableResponse;
 
 public interface CategoryService {
     //create

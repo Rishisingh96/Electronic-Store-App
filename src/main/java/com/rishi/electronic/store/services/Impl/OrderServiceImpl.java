@@ -1,9 +1,9 @@
 package com.rishi.electronic.store.services.Impl;
 
-import com.rishi.electronic.store.dtos.CreateOrderRequest;
-import com.rishi.electronic.store.dtos.OrderDto;
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.entites.*;
+import com.rishi.electronic.store.dto.CreateOrderRequest;
+import com.rishi.electronic.store.dto.OrderDto;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.entity.*;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.helper.Helper;
@@ -11,7 +11,6 @@ import com.rishi.electronic.store.repositories.CartRepository;
 import com.rishi.electronic.store.repositories.OrderRepository;
 import com.rishi.electronic.store.repositories.UserRepository;
 import com.rishi.electronic.store.services.OrderService;
-import lombok.Setter;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +21,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class OrderServiceImpl implements OrderService {

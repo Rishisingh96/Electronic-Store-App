@@ -1,14 +1,17 @@
 package com.rishi.electronic.store.controllers;
 
-import ch.qos.logback.core.boolex.EvaluationException;
-import com.rishi.electronic.store.dtos.ApiResponseMessage;
-import com.rishi.electronic.store.dtos.ImageResponse;
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.UserDto;
-import com.rishi.electronic.store.entites.Providers;
+import com.rishi.electronic.store.dto.ApiResponseMessage;
+import com.rishi.electronic.store.dto.ImageResponse;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.dto.UserDto;
+import com.rishi.electronic.store.entity.Providers;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.FileService;
 import com.rishi.electronic.store.services.UserServices;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -22,7 +25,6 @@ import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -30,6 +32,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @CrossOrigin
+@Tag(name = "UserController", description = "REST APIs related to perform user operations !!")
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -45,8 +48,14 @@ public class UserController {
 
     //create
     @PostMapping
+    @Operation(summary = "create new user !!", description = "this is user api")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success | OK"),
+            @ApiResponse(responseCode = "401", description = "not authorized !!"),
+            @ApiResponse(responseCode = "201", description = "new user created !!")
+    })
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-       userDto.setProviders(Providers.SELF);
+       userDto.setProvider(Providers.SELF);
         UserDto userDto1 = userServices.createUser(userDto);
         return new ResponseEntity<>(userDto1, HttpStatus.CREATED);
     }
@@ -63,7 +72,8 @@ public class UserController {
 
     //delete
     @DeleteMapping("/{userId}")
-    public ResponseEntity<ApiResponseMessage> deleteUser(@PathVariable String userId) {
+    public ResponseEntity<ApiResponseMessage> deleteUser(
+            @PathVariable String userId) {
         userServices.deleteUser(userId);
         ApiResponseMessage message = ApiResponseMessage.builder()
                 .message("\"User is deleted Successfully !!").
@@ -77,6 +87,7 @@ public class UserController {
 
     //get all
     @GetMapping
+    @Operation(summary = "get all users")
     public ResponseEntity<PageableResponse<UserDto>> getAllUsers(
             @RequestParam(value = "pageNumber", defaultValue = "0",required = false) int pageNumber,
             @RequestParam(value = "pageSize",defaultValue = "20",required = false) int pageSize,
@@ -88,6 +99,7 @@ public class UserController {
 
     //get single
     @GetMapping("/{userId}")
+    @Operation(summary = "Get single user by userid !!")
     public ResponseEntity<UserDto> getUser(@PathVariable String userId) {
         return new ResponseEntity<>(userServices.getUserById(userId), HttpStatus.OK);
     }

@@ -1,7 +1,7 @@
 package com.rishi.electronic.store;
 
 
-import com.rishi.electronic.store.entites.User;
+import com.rishi.electronic.store.entity.User;
 import com.rishi.electronic.store.repositories.UserRepository;
 import com.rishi.electronic.store.security.JwtHelper;
 import org.junit.jupiter.api.Test;

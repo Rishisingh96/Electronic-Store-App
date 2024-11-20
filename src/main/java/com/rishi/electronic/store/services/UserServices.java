@@ -1,8 +1,7 @@
 package com.rishi.electronic.store.services;
 
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.UserDto;
-import org.springframework.stereotype.Service;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.dto.UserDto;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package com.rishi.electronic.store.controllers;
 
-import com.rishi.electronic.store.dtos.ApiResponseMessage;
-import com.rishi.electronic.store.dtos.CreateOrderRequest;
-import com.rishi.electronic.store.dtos.OrderDto;
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.entites.Order;
+import com.rishi.electronic.store.dto.ApiResponseMessage;
+import com.rishi.electronic.store.dto.CreateOrderRequest;
+import com.rishi.electronic.store.dto.OrderDto;
+import com.rishi.electronic.store.dto.PageableResponse;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.OrderService;
 import jakarta.validation.Valid;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 

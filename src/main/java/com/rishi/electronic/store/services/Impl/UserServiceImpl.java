@@ -1,10 +1,9 @@
 package com.rishi.electronic.store.services.Impl;
 
-import com.rishi.electronic.store.config.ProjectConfig;
-import com.rishi.electronic.store.dtos.PageableResponse;
-import com.rishi.electronic.store.dtos.UserDto;
-import com.rishi.electronic.store.entites.Role;
-import com.rishi.electronic.store.entites.User;
+import com.rishi.electronic.store.dto.PageableResponse;
+import com.rishi.electronic.store.dto.UserDto;
+import com.rishi.electronic.store.entity.Role;
+import com.rishi.electronic.store.entity.User;
 import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.helper.Helper;
 import com.rishi.electronic.store.repositories.RoleRepository;
@@ -25,7 +24,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
