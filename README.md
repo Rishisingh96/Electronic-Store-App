@@ -30,7 +30,7 @@
 ![8](https://github.com/user-attachments/assets/10a41bd3-0c54-4e56-a389-22bb329f6ac8)
 
 4: Login with Google section --
-
+![image](https://github.com/user-attachments/assets/a4859c5a-728e-4c82-a107-c32a3d8e53b8)
 ![Untitled picture](https://github.com/user-attachments/assets/7dec0ddd-ec88-4b06-ab13-a4c3a0197f53)
 
 
