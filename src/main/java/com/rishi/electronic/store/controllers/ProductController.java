@@ -3,6 +3,7 @@ import com.rishi.electronic.store.dto.*;
 import com.rishi.electronic.store.exceptions.BadApiRequest;
 import com.rishi.electronic.store.services.FileService;
 import com.rishi.electronic.store.services.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import java.io.InputStream;
 @RestController
 @RequestMapping("/products")
 @CrossOrigin
+@Tag(name = "Product Operations", description = "Operations related to products")
 public class ProductController {
     @Autowired
     private ProductService productService;

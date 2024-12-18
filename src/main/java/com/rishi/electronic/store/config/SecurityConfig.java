@@ -38,11 +38,12 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
 
-    private final String[] PUBLIC_URLS = {
+    public final String[] PUBLIC_URLS = {
             "/swagger-ui/**",
             "/webjars/**",
             "/swagger-resources/**",
-            "/v3/api-docs",
+            "/v3/api-docs",     // Keep this as well
+            "/v3/api-docs/**",  // Add wildcard to include all API docs
             "/test"
     };
 
@@ -105,6 +106,7 @@ public class SecurityConfig {
 //                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").hasRole(AppConstants.ROLE_ADMIN)
                                 .requestMatchers(HttpMethod.POST,"/auth/generate-token","/auth/login-with-google","/auth/regenerate-token").permitAll()
                                 .requestMatchers("/auth/**").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                                 .anyRequest().permitAll()
         );
         //We can use Method way to secure authorize go to controller

@@ -1,30 +1,112 @@
 package com.rishi.electronic.store.config;
 
-
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import io.swagger.v3.oas.models.servers.Server;
 
+import java.util.List;
+
+
+/*@SecurityScheme(
+        name = "scheme1",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer"
+)
+@OpenAPIDefinition(
+        info = @Info(
+                title = "Electronic Store API ",
+                description = "This is backed of electronic store by Rishi singh",
+                version = "1.0V",
+                contact = @Contact(
+                        name = "Rishi Singh",
+                        email = "rishicoding9838@gmail.com",
+                        url = "https://google.com"
+                ),
+                license = @License(
+                        name = "OPEN License",
+                        url = "https://learncodewithdurgesh.com"
+                )
+        )
+        ,
+        externalDocs = @ExternalDocumentation(
+                description = "This is external docs",
+                url = "https://learncodewithdurgesh.com"
+        )
+)*/
 @Configuration
 public class SwaggerConfig {
     @Bean
-    public OpenAPI springShopOpenAPI() {
+    public OpenAPI openAPI() {
+        String schemeName = "bearerScheme";
+
         return new OpenAPI()
+                // Define security requirements
+                .addSecurityItem(new SecurityRequirement().addList(schemeName))
+                // Define components including security schemes
+                .components(new Components()
+                        .addSecuritySchemes(schemeName, new SecurityScheme()
+                                .name(schemeName)
+                                .type(SecurityScheme.Type.HTTP)
+                                .bearerFormat("JWT")
+                                .scheme("bearer")))
+                // Add metadata information
                 .info(new Info()
-                        .title("Electronic Store Api")
-                        .description("This is backed of electronic store developed in premium course")
+                        .title("Electronic Store API")
+                        .description("This is the backend of the Electronic Store App by Rishi Singh")
+                        .version("1.0v")
+                        .contact(new Contact()
+                                .name("Rishi Singh")
+                                .email("rishicoding9838@gmail.com")
+                                .url("")) // You can leave URL blank or provide a real one
+                        .license(new License()
+                                .name("Apache License 2.0")
+                                .url("https://www.apache.org/licenses/LICENSE-2.0")))
+                // Add external documentation if needed
+                .externalDocs(new ExternalDocumentation()
+                        .description("This is an external URL")
+                        .url("https://springshop.wiki.github.org/docs"))
+                // Add server information
+                .servers(List.of(new Server()
+                        .url("http://localhost:9090")
+                        .description("Generated server URL")));
+    }
+   /* @Bean
+    public OpenAPI openAPI(){
+
+        String schemeName = "bearerScheme";
+
+        return new OpenAPI()
+                .addSecurityItem(new SecurityRequirement()
+                        .addList(schemeName)
+                )
+                .components(new Components()
+                        .addSecuritySchemes(schemeName, new SecurityScheme()
+                                .name(schemeName)
+                                .type(SecurityScheme.Type.HTTP)
+                                .bearerFormat("JWT")
+                                .scheme("bearer")
+                        )
+                )
+                .info(new Info()
+                         .title("Electronic Store Api")
+                        .description("This is backed of electronic store App by Rishi singh")
                         .version("1.0v")
                         .contact(new Contact().name("Rishi singh").email("rishicoding9838@gmail.com").url(""))
                         .license(new License().name("Apache"))
                 ).externalDocs(new ExternalDocumentation()
                         .description("this is external URl")
                         .url("https://springshop.wiki.github.org/docs"));
-//
     }
+   */
 //
 //    @Bean
 //    public OpenAPI openAPI() {
