@@ -46,5 +46,6 @@ public class UserDto {
     @ImageNameValid
     private String imageName;
 
-    private Providers provider;
+    @Builder.Default
+    private Providers provider = Providers.SELF;
 }

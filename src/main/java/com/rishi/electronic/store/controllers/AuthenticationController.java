@@ -13,6 +13,7 @@ import com.rishi.electronic.store.exceptions.ResourceNotFoundException;
 import com.rishi.electronic.store.security.JwtHelper;
 import com.rishi.electronic.store.services.RefreshTokenService;
 import com.rishi.electronic.store.services.UserServices;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,12 +31,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @Tag(name = "AuthController", description = "APIs for Authentication!!")
+@SecurityRequirement(name="scheme1")
 public class AuthenticationController {
 
     // Logger initialization
@@ -222,5 +227,11 @@ public class AuthenticationController {
             logger.info("Token is invalid!!");
             throw new BadApiRequest("Invalid Google User");
         }
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<UserDto> getCurrentUser(Principal principal) {
+        String name = principal.getName();
+        return new ResponseEntity<>(modelMapper.map(userDetailsService.loadUserByUsername(name), UserDto.class), HttpStatus.OK);
     }
 }
