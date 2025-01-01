@@ -1,14 +1,51 @@
-->Developed a comprehensive e-commerce web application with 7 key modules: User Module, Product Module, Category Module, Role Module, Order Module, and Cart Module, 
-  utilizing robust RESTful APIs and connected the backend with React using Axios, implemented Google Login, and displayed the product list. 
-->Implemented role-based features: Admin can categorize products, create accounts, and upload product images and details, while users can register and 
-  log in using both Google OAuth and traditional methods. 
-->Managed full product lifecycle: product creation, retrieval, updates, sorting, filtering, and deletion, with enhanced shopping cart 
-  functionalities (adding, updating, and removing products). 
-->Integrated advanced security features such as JWT tokens, refresh tokens, and Spring Security to ensure 
-   secure user authentication and authorization. 
-->Leveraged technologies including Spring Boot, Spring MVC, Hibernate/JPA, MySQL, JWT Tokens, Swagger 
-   for API documentation, and React for select frontend components. 
-->Performed API testing and implemented thorough documentation using Swagger.
+Electronic Store App
+Duration: June 2024 – November 2024
+Technologies: Spring Boot, Spring MVC, Hibernate/JPA, MySQL, JWT Tokens, OAuth (Google), Swagger, React, Axios
+
+Overview
+The Electronic Store App is a full-fledged e-commerce web application designed with a modular architecture and robust RESTful APIs. It features six key modules that handle various aspects of an e-commerce platform, including user management, product lifecycle, and shopping cart functionalities. The backend integrates seamlessly with React for select frontend components, providing a smooth and secure user experience.
+
+Features
+6 Key Modules:
+
+User Module: User registration, login (Google OAuth and traditional), role-based access control.
+Product Module: CRUD operations for products, product image uploads, and detailed management.
+Category Module: Categorization of products by the admin.
+Role Module: Role-based access features (Admin and User roles).
+Order Module: Handling orders placed by users.
+Cart Module: Full shopping cart lifecycle (adding, updating, and removing products).
+Role-Based Features:
+
+Admin: Can manage product categories, create user accounts, upload product images, and manage products.
+User: Can register and log in using either Google OAuth or traditional methods, browse products, and manage cart and orders.
+Product Management:
+
+Full CRUD operations for products.
+Sorting and filtering to enhance user search and product discovery.
+Product image uploads for a better shopping experience.
+Shopping Cart Functionality:
+
+Add, update, and remove products from the cart.
+Cart management integrated with user sessions.
+Security & Authentication:
+
+JWT Tokens and refresh tokens for secure user authentication.
+Spring Security for enforcing access control and protecting sensitive routes.
+Google OAuth for easy login.
+API Documentation:
+
+Thorough API documentation implemented using Swagger, allowing easy testing and understanding of endpoints.
+Frontend Integration:
+
+The backend is connected to the frontend using React for dynamic product display and Axios for API communication.
+Technical Stack
+Backend: Spring Boot, Spring MVC, Hibernate/JPA, MySQL
+Security: JWT Tokens, OAuth (Google Login), Spring Security
+API Documentation: Swagger
+Frontend: React, Axios for API integration
+Additional Features
+API Testing: Extensive testing of REST APIs for performance and security.
+Secure Data Handling: Proper encryption and session management through Spring Security.
 
 1: Electronic Store Code Section - 
 ![code 0](https://github.com/user-attachments/assets/e16839c8-029e-4c6b-b500-8a25f2628f00)
