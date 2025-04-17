@@ -2,63 +2,52 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "electronic-store-app"
-        REMOTE_USER = "ubuntu" // or your server user
-        REMOTE_HOST = "your-server-ip"
-        DEPLOY_DIR = "/home/ubuntu/apps"
+        JAR_NAME = "electronic-store-app-0.0.1-SNAPSHOT.jar"
+        APP_PORT = "8081"
     }
 
     stages {
-        stage('Clone Code') {
+
+        stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/Rishisingh96/Electronic-Store-App.git'
             }
         }
 
-        stage('Build with Maven') {
+        stage('Build App') {
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Unit Tests') {
+        stage('Stop Previous App') {
             steps {
-                sh 'mvn test'
+                sh '''
+                    PID=$(lsof -ti :${APP_PORT}) || true
+                    if [ ! -z "$PID" ]; then
+                      kill -9 $PID
+                      echo "Stopped running app on port ${APP_PORT}"
+                    fi
+                '''
             }
         }
 
-        stage('Package') {
+        stage('Deploy App') {
             steps {
-                sh 'mvn package -DskipTests'
-            }
-        }
-
-        stage('Deploy to Server') {
-            steps {
-                sh """
-                    scp target/*.jar ${REMOTE_USER}@${REMOTE_HOST}:${DEPLOY_DIR}/${APP_NAME}.jar
-                """
-            }
-        }
-
-        stage('Run Spring Boot App') {
-            steps {
-                sh """
-                    ssh ${REMOTE_USER}@${REMOTE_HOST} '
-                        pkill -f ${APP_NAME}.jar || true
-                        nohup java -jar ${DEPLOY_DIR}/${APP_NAME}.jar > ${DEPLOY_DIR}/app.log 2>&1 &
-                    '
-                """
+                sh '''
+                    nohup java -Dserver.port=${APP_PORT} -jar target/${JAR_NAME} > app.log 2>&1 &
+                    echo "App started on port ${APP_PORT}"
+                '''
             }
         }
     }
 
     post {
         success {
-            echo "✅ Deployment successful!"
+            echo "✅ Deployment Successful! Visit: http://3.110.165.13:${APP_PORT}/"
         }
         failure {
-            echo "❌ Deployment failed!"
+            echo "❌ Deployment Failed"
         }
     }
 }
