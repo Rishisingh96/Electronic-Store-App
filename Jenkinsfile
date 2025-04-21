@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/Rishisingh96/Electronic-Store-App.git'
@@ -16,7 +15,10 @@ pipeline {
 
         stage('Build App') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh '''
+                    echo "🔨 Building app..."
+                    mvn clean package -DskipTests -e -X || { echo "❌ Maven build failed"; exit 1; }
+                '''
             }
         }
 
@@ -25,8 +27,10 @@ pipeline {
                 sh '''
                     PID=$(lsof -ti :${APP_PORT}) || true
                     if [ ! -z "$PID" ]; then
-                      kill -9 $PID
-                      echo "Stopped running app on port ${APP_PORT}"
+                        kill -9 $PID
+                        echo "🛑 Stopped running app on port ${APP_PORT}"
+                    else
+                        echo "✅ No previous app running on port ${APP_PORT}"
                     fi
                 '''
             }
@@ -35,8 +39,14 @@ pipeline {
         stage('Deploy App') {
             steps {
                 sh '''
+                    echo "🚀 Starting app on port ${APP_PORT}..."
                     nohup java -Dserver.port=${APP_PORT} -jar target/${JAR_NAME} > app.log 2>&1 &
-                    echo "App started on port ${APP_PORT}"
+                    sleep 5
+                    if ! lsof -i :${APP_PORT}; then
+                        echo "❌ App did not start properly"
+                        exit 1
+                    fi
+                    echo "✅ App started on port ${APP_PORT}"
                 '''
             }
         }
